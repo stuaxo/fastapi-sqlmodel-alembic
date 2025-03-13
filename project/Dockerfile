@@ -1,5 +1,5 @@
 # pull official base image
-FROM python:3.11-slim-buster
+FROM python:3.13-slim
 
 # set working directory
 WORKDIR /usr/src/app
@@ -9,9 +9,9 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # install system dependencies
-RUN apt-get update \
-  && apt-get -y install netcat gcc postgresql \
-  && apt-get clean
+RUN apt-get update && \
+    apt-get -y install netcat-openbsd gcc postgresql && \
+    apt-get clean
 
 # install python dependencies
 RUN pip install --upgrade pip
